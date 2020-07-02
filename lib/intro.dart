@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:NewFlutterApp/statepage.dart';
+import 'package:NewFlutterApp/staticjson.dart';
 
 class IntroPage extends StatefulWidget {
   final String title;
@@ -21,16 +22,29 @@ class _IntroPageState extends State<IntroPage> {
         RaisedButton(
           onPressed: _fireStateFunction,
           child: (Text('State Example')),
+        ),
+        RaisedButton(
+          onPressed: _staticJsonAction,
+          child: (Text('Static Json Example')),
         )
       ])),
     );
   }
+  
 
   void _fireStateFunction() {
     print('State Example pressed');
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => StatePage()),
+      MaterialPageRoute(builder: (context) => StatePage(title:'State Page Example')),
+    );
+  }
+
+  void _staticJsonAction() {
+    print('Static Json Button pressed');
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => StaticJson(title:'Static Json Example')),
     );
   }
 }

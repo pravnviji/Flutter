@@ -4,11 +4,9 @@ import 'package:flutter/material.dart';
 class FancyButton extends StatelessWidget {
   FancyButton(
       {@required this.onPressedHandler,
-      @required this.questionIndex,
       @required this.answerText});
 
   final Function onPressedHandler;
-  final int questionIndex;
   final String answerText;
 
   @override

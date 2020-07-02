@@ -1,9 +1,14 @@
+
 import 'package:flutter/material.dart';
 import 'package:NewFlutterApp/intro.dart';
 
 void main() {
+  FlutterError.onError = (FlutterErrorDetails details) {
+    FlutterError.dumpErrorToConsole(details);
+  };
   runApp(MyApp());
 }
+
 
 class MyApp extends StatefulWidget {
   @override
