@@ -1,8 +1,8 @@
-# NewFlutterApp
+# Basic with Flutter
 
 This application holds the basic concepts of FlutterApp
 
-Functionality includes
+# Functionality includes
 
 1) Side Menu Navigation
 2) Stateful & Stateless 
