@@ -10,6 +10,6 @@ This application holds the basic concepts of FlutterApp
 4) Future builder - Dynamic (WIP)
 
 
-
-Ref : https://flutter-academy.com/
-Ref : https://www.youtube.com/watch?v=x0uinJvhNxI
+#Reference 
+https://flutter-academy.com/
+https://www.youtube.com/watch?v=x0uinJvhNxI
