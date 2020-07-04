@@ -1,20 +1,22 @@
 class EmployeeModel {
-  String id, name, salary, age, profileimage;
-  EmployeeModel({
-    this.id,
-    this.name,
-    this.age,
-    this.salary,
-    this.profileimage,
-  });
+  String id;
+  String employeeName;
+  String employeeSalary;
+  String employeeAge;
+  String profileImage;
 
-  factory EmployeeModel.fromJson(Map<String, dynamic> parsedJson) {
-    return EmployeeModel(
-        id: parsedJson['id'],
-        name: parsedJson['employee_name'],
-        age: parsedJson['employee_age'],
-        salary: parsedJson['employee_salary'],
-        profileimage: parsedJson['profile_image']
-        );
-  }
+  EmployeeModel(
+      {this.id,
+      this.employeeName,
+      this.employeeSalary,
+      this.employeeAge,
+      this.profileImage});
+
+  factory EmployeeModel.fromJson(Map<String, dynamic> json)=> EmployeeModel(
+    id : json['id'],
+    employeeName : json['employee_name'],
+    employeeSalary : json['employee_salary'],
+    employeeAge : json['employee_age'],
+    profileImage : json['profile_image'],
+  );
 }

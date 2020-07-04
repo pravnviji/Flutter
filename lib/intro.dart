@@ -1,3 +1,4 @@
+import 'package:NewFlutterApp/futurebuilderdynamic.dart';
 import 'package:flutter/material.dart';
 import 'package:NewFlutterApp/statepage.dart';
 import 'package:NewFlutterApp/staticjson.dart';
@@ -26,6 +27,9 @@ class _IntroPageState extends State<IntroPage> {
         RaisedButton(
           onPressed: _staticJsonAction,
           child: (Text('Static Json Example')),
+        ), RaisedButton(
+          onPressed: _dynamicDataction,
+          child: (Text('Dynamic Data With FlutterBuilder')),
         )
       ])),
     );
@@ -45,6 +49,13 @@ class _IntroPageState extends State<IntroPage> {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => StaticJson(title:'Static Json Example')),
+    );
+  }
+
+  void _dynamicDataction(){
+     Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => FutureBuilderDynamic()),
     );
   }
 }
