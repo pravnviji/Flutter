@@ -14,10 +14,6 @@ class FutureBuilderDynamic extends StatefulWidget {
 }
 
 class _FutureBuilderDynamicState extends State<FutureBuilderDynamic> {
-  Future<List<EmployeeModel>> employeeDetails;
-
-  final ScrollController _scrollController = new ScrollController();
-
   @override
   void initState() {
     super.initState();
@@ -26,7 +22,6 @@ class _FutureBuilderDynamicState extends State<FutureBuilderDynamic> {
   dispose() {
     super.dispose();
   }
-
 
   final String endpointUrl = "http://dummy.restapiexample.com/api/v1/employees";
 
@@ -50,7 +45,6 @@ Future<EmployeeModel> fetchInfo() async{
         .map<EmployeeModel>((json) => EmployeeModel.fromJson(json))
         .toList();
   }
-
 
   /*Widget createEmployeeWidget(BuildContext context, AsyncSnapshot snapshot) {
     var values = snapshot.data;
@@ -82,11 +76,10 @@ Future<EmployeeModel> fetchInfo() async{
         ),
         body: new Center(
           child: new Column(
-            
-           mainAxisSize: MainAxisSize.max,
+            mainAxisSize: MainAxisSize.max,
             children: <Widget>[
               new Container(
-                margin: EdgeInsets.fromLTRB(0, 10, 0, 30),
+                  margin: EdgeInsets.fromLTRB(0, 10, 0, 30),
                   child: Text(
                     "Dynamic data binding using Future Builder",
                     style: TextStyle(
@@ -95,64 +88,39 @@ Future<EmployeeModel> fetchInfo() async{
                         fontFamily: 'Arial',
                         color: Colors.redAccent),
                   )),
-             Expanded(
-              child: Container(
-              padding: EdgeInsets.all(5),
-                height: 30,
-                color:Colors.blue[200],
-                width: double.infinity,
-                child: FutureBuilder(
-                  future: _getEmployeeDetails(http.Client()),
-                  builder: (context, snapshot) {
-                    return (snapshot.hasData)
-                        //  ?  EmployeeDetails(employee: snapshot.data)
-                        ? Scrollbar(
-                            isAlwaysShown: true,
-                            controller: _scrollController,
-                            child: GridView.builder(
+              Expanded(
+                child: Container(
+                  padding: EdgeInsets.all(5),
+                  width: double.infinity,
+                  child: FutureBuilder(
+                      future: _getEmployeeDetails(http.Client()),
+                      builder: (context, snapshot) {
+                        return (snapshot.hasData)
+                            //  ?  EmployeeDetails(employee: snapshot.data)
+                            ? GridView.builder(
                                 gridDelegate:
                                     SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: 2,
                                 ),
                                 itemCount: snapshot.data.length,
                                 itemBuilder: (context, index) {
-                                //  return Text(snapshot.data[index].employeeName);
+                                  //  return Text(snapshot.data[index].employeeName);
                                   return FutureBuilderDynamicDetail(
-                                    employeeName:snapshot.data[index].employeeName,
-                                    employeeAge:snapshot.data[index].employeeAge,
-                                    employeeSalary:snapshot.data[index].employeeSalary,
-                                     id:snapshot.data[index].id,
-                                    );
-                                }),
-                          )
-                        : Center(child: CircularProgressIndicator());
-                  }),
+                                    employeeName:
+                                        snapshot.data[index].employeeName,
+                                    employeeAge:
+                                        snapshot.data[index].employeeAge,
+                                    employeeSalary:
+                                        snapshot.data[index].employeeSalary,
+                                    id: snapshot.data[index].id,
+                                  );
+                                })
+                            : Center(child: CircularProgressIndicator());
+                      }),
+                ),
               ),
-             ),
             ],
           ),
-        )
-        );
-  }
-}
-
-class EmployeeDetails extends StatelessWidget {
-  final List employee;
-
-  EmployeeDetails({Key key, this.employee}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return GridView.builder(
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-      ),
-      itemCount: employee.length,
-      itemBuilder: (context, index) {
-        print('Item builder');
-        print(employee[index]);
-        return Text(employee[index]);
-      },
-    );
+        ));
   }
 }

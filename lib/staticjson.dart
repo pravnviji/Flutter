@@ -18,6 +18,7 @@ class StaticJson extends StatefulWidget {
 class _StaticJson extends State<StaticJson> {
   final ScrollController _scrollController = new ScrollController();
   List<StudentModel> student;
+  List studentReOrder = null;
 
   @override
   void initState() {
@@ -45,40 +46,75 @@ class _StaticJson extends State<StaticJson> {
           spacing: 10.0,
           runSpacing: 20.0,
           children: [
-            new Container(
-              child: Text("Static Json Example with Student Data",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Arial',
-                      
-                      color: HexColor('#3CB371'))),
-            ),
-            new Container(
-              width: 200,
-              height: 300,
-              child: Scrollbar(
-                isAlwaysShown: true,
-                controller: _scrollController,
-                child: (student != null)
-                    ? ListView.builder(
-                        itemCount: student.length,
-                        itemBuilder: (context, index) {
-                          return ListTile(
-                              title: Text(student[index].studentName),
-                              subtitle: Text("Score -- " +
-                                  student[index].studentScores.toString()));
-                        })
-                    : new Text('No record found'),
+            Column(children: [
+              Container(
+                child: Text("Static Json Example with Student Data",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Arial',
+                        color: HexColor('#3CB371'))),
               ),
-            )
-          ]), /*,
+              new Container(
+                width: 200,
+                height: 300,
+                child: Scrollbar(
+                  isAlwaysShown: true,
+                  controller: _scrollController,
+                  child: (student != null)
+                      ? ListView.builder(
+                          itemCount: student.length,
+                          itemBuilder: (context, index) {
+                            return ListTile(
+                                title: Text(student[index].studentName),
+                                subtitle: Text("Score -- " +
+                                    student[index].studentScores.toString()));
+                          })
+                      : new Text('No record found'),
+                ),
+              )
+            ]),
+            Spacer(flex: 2),
+            Column(children: [
+              Container(
+                child: Text("Reorder ListView",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Arial',
+                        color: HexColor('#3CB371'))),
+              ),
+              Container(
+                width: 200,
+                height: 300,
+                child: Scrollbar(
+                  isAlwaysShown: true,
+                  controller: _scrollController,
+                  child: (student != null)
+                      ? ReorderableListView(
+                          onReorder: _updateMyItems,
+                          children: List.generate(student.length, (index) {
+                            return ListTile(
+                              key: ValueKey(index),
+                              title: Text('ID: ' +
+                                  student[index].studentName.toString()),
+                              subtitle:
+                                  Text(student[index].studentScores.toString()),
+                            );
+                          }),
+                        )
+                      : new Text('No record found'),
+                ),
+              ),
+            ]), /*,
                 new Container(
                   width:200,
                   height:300,
                  child: projectWidget(),
                 )*/
+          ]),
     ); // This trailing comma makes auto-formatting nicer for build methods.
   }
 
@@ -91,7 +127,18 @@ class _StaticJson extends State<StaticJson> {
       setState(() {
         Iterable list = json.decode(response);
         student = list.map((model) => StudentModel.fromJson(model)).toList();
+        studentReOrder = list.toList();
       });
     });
+  }
+
+  void _updateMyItems(int oldIndex, int newIndex) {
+    if (newIndex > oldIndex) {
+      newIndex -= 1;
+    }
+
+    final StudentModel item = student.removeAt(oldIndex);
+
+    student.insert(newIndex, item);
   }
 }

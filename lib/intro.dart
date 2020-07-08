@@ -1,4 +1,5 @@
 import 'package:NewFlutterApp/futurebuilderdynamic.dart';
+import 'package:NewFlutterApp/testcalendar.dart';
 import 'package:flutter/material.dart';
 import 'package:NewFlutterApp/statepage.dart';
 import 'package:NewFlutterApp/staticjson.dart';
@@ -27,20 +28,25 @@ class _IntroPageState extends State<IntroPage> {
         RaisedButton(
           onPressed: _staticJsonAction,
           child: (Text('Static Json Example')),
-        ), RaisedButton(
+        ),
+        RaisedButton(
           onPressed: _dynamicDataction,
           child: (Text('Dynamic Data With FlutterBuilder')),
+        ),
+        RaisedButton(
+          onPressed: _testCalendarAction,
+          child: (Text('Test Calendar')),
         )
       ])),
     );
   }
-  
 
   void _fireStateFunction() {
     print('State Example pressed');
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => StatePage(title:'State Page Example')),
+      MaterialPageRoute(
+          builder: (context) => StatePage(title: 'State Page Example')),
     );
   }
 
@@ -48,14 +54,24 @@ class _IntroPageState extends State<IntroPage> {
     print('Static Json Button pressed');
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => StaticJson(title:'Static Json Example')),
+      MaterialPageRoute(
+          builder: (context) => StaticJson(title: 'Static Json Example')),
     );
   }
 
-  void _dynamicDataction(){
-     Navigator.push(
+  void _dynamicDataction() {
+    Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => FutureBuilderDynamic()),
+    );
+  }
+
+  void _testCalendarAction() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) =>
+              TestCalendar(title: 'Test Calendar Functionality')),
     );
   }
 }
