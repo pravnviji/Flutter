@@ -2,16 +2,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class FancyButton extends StatelessWidget {
-  FancyButton(
-      {@required this.onPressedHandler,
-      @required this.answerText});
+  FancyButton({@required this.onPressedHandler, @required this.answerText});
 
   final Function onPressedHandler;
   final String answerText;
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return new RawMaterialButton(
       fillColor: Colors.deepOrange,
       splashColor: Colors.orange,

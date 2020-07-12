@@ -12,11 +12,11 @@ class EmployeeModel {
       this.employeeAge,
       this.profileImage});
 
-  factory EmployeeModel.fromJson(Map<String, dynamic> json)=> EmployeeModel(
-    id : json['id'],
-    employeeName : json['employee_name'],
-    employeeSalary : json['employee_salary'],
-    employeeAge : json['employee_age'],
-    profileImage : json['profile_image'],
-  );
+  factory EmployeeModel.fromJson(Map<String, dynamic> json) => EmployeeModel(
+        id: json['id'],
+        employeeName: json['employee_name'],
+        employeeSalary: json['employee_salary'],
+        employeeAge: json['employee_age'],
+        profileImage: json['profile_image'],
+      );
 }

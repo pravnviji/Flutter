@@ -82,6 +82,7 @@ Future<EmployeeModel> fetchInfo() async{
                   margin: EdgeInsets.fromLTRB(0, 10, 0, 30),
                   child: Text(
                     "Dynamic data binding using Future Builder",
+                    textAlign: TextAlign.center,
                     style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,

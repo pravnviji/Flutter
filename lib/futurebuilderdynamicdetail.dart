@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 // ignore: must_be_immutable
 class FutureBuilderDynamicDetail extends StatelessWidget {
   final String employeeName, employeeAge, employeeSalary, id;
-  final ScrollController _scrollController = new ScrollController();
   Color _textColor;
   FutureBuilderDynamicDetail(
       {Key key,
@@ -17,8 +16,6 @@ class FutureBuilderDynamicDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-
     return StatefulWrapper(
       onInit: () {
         _textColor = Color((math.Random().nextDouble() * 0xFFFFFF).toInt())

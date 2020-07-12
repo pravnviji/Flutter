@@ -1,5 +1,9 @@
+import 'package:NewFlutterApp/contact/contactlistpage.dart';
+import 'package:NewFlutterApp/fileanimation.dart';
 import 'package:NewFlutterApp/futurebuilderdynamic.dart';
+import 'package:NewFlutterApp/silverapp.dart';
 import 'package:NewFlutterApp/testcalendar.dart';
+import 'package:NewFlutterApp/userform.dart';
 import 'package:flutter/material.dart';
 import 'package:NewFlutterApp/statepage.dart';
 import 'package:NewFlutterApp/staticjson.dart';
@@ -16,7 +20,6 @@ class IntroPage extends StatefulWidget {
 class _IntroPageState extends State<IntroPage> {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
       appBar: AppBar(title: Text(widget.title)),
       body: Center(
@@ -36,6 +39,22 @@ class _IntroPageState extends State<IntroPage> {
         RaisedButton(
           onPressed: _testCalendarAction,
           child: (Text('Test Calendar')),
+        ),
+        RaisedButton(
+          onPressed: _flipAnimationAction,
+          child: (Text('Flip Animation')),
+        ),
+        RaisedButton(
+          onPressed: _silverAppAction,
+          child: (Text('Silver App Bar')),
+        ),
+        RaisedButton(
+          onPressed: _userFormAction,
+          child: (Text('Form Ex')),
+        ),
+        RaisedButton(
+          onPressed: _circularClipAction,
+          child: (Text('Circular clip animation - page navigation')),
         )
       ])),
     );
@@ -72,6 +91,35 @@ class _IntroPageState extends State<IntroPage> {
       MaterialPageRoute(
           builder: (context) =>
               TestCalendar(title: 'Test Calendar Functionality')),
+    );
+  }
+
+  void _flipAnimationAction() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => FlipAnimation(title: 'Flip Animation')),
+    );
+  }
+
+  void _silverAppAction() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => SilverAppExample()),
+    );
+  }
+
+  void _userFormAction() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => UserForm()),
+    );
+  }
+
+  void _circularClipAction() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => ContactListPage()),
     );
   }
 }
