@@ -21,43 +21,57 @@ class _IntroPageState extends State<IntroPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget.title)),
-      body: Center(
-          child: Column(children: <Widget>[
-        RaisedButton(
-          onPressed: _fireStateFunction,
-          child: (Text('State Example')),
-        ),
-        RaisedButton(
-          onPressed: _staticJsonAction,
-          child: (Text('Static Json Example')),
-        ),
-        RaisedButton(
-          onPressed: _dynamicDataction,
-          child: (Text('Dynamic Data With FlutterBuilder')),
-        ),
-        RaisedButton(
-          onPressed: _testCalendarAction,
-          child: (Text('Test Calendar')),
-        ),
-        RaisedButton(
-          onPressed: _flipAnimationAction,
-          child: (Text('Flip Animation')),
-        ),
-        RaisedButton(
-          onPressed: _silverAppAction,
-          child: (Text('Silver App Bar')),
-        ),
-        RaisedButton(
-          onPressed: _userFormAction,
-          child: (Text('Form Ex')),
-        ),
-        RaisedButton(
-          onPressed: _circularClipAction,
-          child: (Text('Circular clip animation - page navigation')),
-        )
-      ])),
-    );
+        appBar: AppBar(title: Text(widget.title)),
+        body: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/images/bg.png"),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: Center(
+                child: Column(children: <Widget>[
+              RaisedButton(
+                color: Colors.brown[100].withOpacity(0.1),
+                onPressed: _fireStateFunction,
+                child: (Text('State Example',style: TextStyle(color: Colors.white, fontSize: 16),)),
+              ),
+              RaisedButton(
+                onPressed: _staticJsonAction,
+                color: Colors.brown[100].withOpacity(0.1),
+                child: (Text('Static Json Example',style: TextStyle(color: Colors.white, fontSize: 16),)),
+              ),
+              RaisedButton(
+                onPressed: _dynamicDataction,
+                color: Colors.brown[100].withOpacity(0.1),
+                child: (Text('Dynamic Data With FlutterBuilder',style: TextStyle(color: Colors.white, fontSize: 16),)),
+              ),
+              RaisedButton(
+                onPressed: _testCalendarAction,
+                color: Colors.brown[100].withOpacity(0.1),
+                child: (Text('Test Calendar',style: TextStyle(color: Colors.white, fontSize: 16),)),
+              ),
+              RaisedButton(
+                onPressed: _flipAnimationAction,
+                color: Colors.brown[100].withOpacity(0.1),
+                child: (Text('Flip Animation',style: TextStyle(color: Colors.white, fontSize: 16),)),
+              ),
+              RaisedButton(
+                onPressed: _silverAppAction,
+                color: Colors.brown[100].withOpacity(0.1),
+                child: (Text('Silver App Bar',style: TextStyle(color: Colors.white, fontSize: 16),)),
+              ),
+              RaisedButton(
+                onPressed: _userFormAction,
+                color: Colors.brown[100].withOpacity(0.1),
+                child: (Text('Form Ex',style: TextStyle(color: Colors.white, fontSize: 16),)),
+              ),
+              RaisedButton(
+                onPressed: _circularClipAction,
+                color: Colors.brown[100].withOpacity(0.1),
+                child: (Text('Circular clip animation - page navigation',style: TextStyle(color: Colors.white, fontSize: 16),)),
+              )
+            ]))));
   }
 
   void _fireStateFunction() {

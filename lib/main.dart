@@ -22,13 +22,14 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: IntroPage(title: 'Test app'),
       theme: ThemeData(
-          primaryColor: Colors.blue[400],
-          accentColor: Colors.green,
+          primaryColor: Colors.brown,
+          accentColor: Colors.white,
           textTheme: TextTheme(bodyText2: TextStyle(color: Colors.purple)),
           inputDecorationTheme: const InputDecorationTheme(
-            labelStyle: TextStyle(color: Colors.blueAccent),
+            labelStyle: TextStyle(color: Colors.brown),
             hintStyle: TextStyle(color: Colors.black26),
             border: OutlineInputBorder(
               borderSide: BorderSide(

@@ -21,7 +21,7 @@ class _SilverAppExample extends State<SilverAppExample> {
   }
 
   Future<String> _loadStudentAsset() async {
-    return await rootBundle.loadString('../assets/mock/Student.json');
+    return await rootBundle.loadString('assets/mock/Student.json');
   }
 
   void _loadStudent() {
@@ -45,7 +45,7 @@ class _SilverAppExample extends State<SilverAppExample> {
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
                 centerTitle: true,
-                title: Text("Collapsing Toolbar",
+                title: Text("Collapsing Toolbars ",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 16.0,

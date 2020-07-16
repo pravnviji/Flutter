@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:NewFlutterApp/HexColor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:NewFlutterApp/model/StudentModel.dart';
@@ -47,7 +46,7 @@ class _StaticJson extends State<StaticJson> {
             runSpacing: 20.0,
             children: [
               ConstrainedBox(
-                  constraints: new BoxConstraints.tight(Size(800.0, 800.0)),
+                  constraints: new BoxConstraints.tight(Size(MediaQuery.of(context).size.width, 800.0)),
                   child: Stack(
                     children: <Widget>[
                       Positioned.fill(
@@ -194,7 +193,7 @@ class _StaticJson extends State<StaticJson> {
   }
 
   Future<String> _loadStudentAsset() async {
-    return await rootBundle.loadString('../assets/mock/Student.json');
+    return await rootBundle.loadString('assets/mock/Student.json');
   }
 
   void _loadStudent() {

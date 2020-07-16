@@ -86,8 +86,8 @@ class AvatarHero extends StatelessWidget {
           shape: BoxShape.circle,
         ),
         clipBehavior: Clip.antiAlias,
-        child: Image.asset(
-          contactInfo.avatarAsset,
+        child: Image(
+          image: AssetImage(contactInfo.avatarAsset),
           fit: BoxFit.cover,
         ),
       ),
