@@ -1,6 +1,7 @@
 import 'package:NewFlutterApp/model/EmployeeModel.dart';
 import 'package:NewFlutterApp/userformresult.dart';
 import 'package:NewFlutterApp/utils/customtextfield.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class UserForm extends StatefulWidget {
@@ -58,90 +59,97 @@ class _UserForm extends State<UserForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Dyamic Future Builder Example"),
-      ),
-      body: Form(
-        key: _formKey,
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-                child: CustomTextField(
-                    labelText: "Employee Id",
-                    controller: _empIdController,
-                    intialVal: _empId,
-                    hintText: "Please enter your employee id",
-                    icons: Icon(Icons.adjust),
-                    onSaved: (String value) {
-                      //  _formKey.currentState.save();
-                      model.id = value;
-                      this.model.id = value;
-                    },
-                    onChanged: (String value) {
-                      _formKey.currentState.save();
-                      model.id = value;
-                    },
-                    validator: true),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-                child: CustomTextField(
-                  labelText: "Employee Name",
-                  //   intialVal: _empNameController.text,
-                  controller: _empNameController,
-                  hintText: "Please enter your Name",
-                  icons: Icon(Icons.people_outline),
-                  validator: true,
-                  onChanged: (String value) {
-                    _formKey.currentState.save();
-                    this.model.employeeName = value;
-                  },
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-                child: CustomTextField(
-                  labelText: "Salary",
-                  hintText: "Please enter your Salary",
-                  icons: Icon(Icons.apps),
-                  validator: true,
-                  onChanged: (String value) {
-                    this.model.employeeSalary = value;
-                  },
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-                child: RaisedButton(
-                  onPressed: () {
-                    if (_formKey.currentState.validate()) {
-                      print('value');
-                      setState(() {
-                        _empIdController.text = this.model.id;
-                        _empNameController.text = this.model.employeeName;
-                        this._formKey.currentState.save();
-                      });
-                      print(this.model.id);
-                      print(model.id);
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                UserFormResult(employeeModel: this.model)),
-                      );
-                    }
-                  },
-                  child: Text('Submit'),
-                ),
-              ),
-            ],
-          ),
+        appBar: AppBar(
+          title: Text("Dyamic Future Builder Example"),
         ),
-      ),
-    );
+        body: Form(
+            key: _formKey,
+            child: LayoutBuilder(builder:
+                (BuildContext context, BoxConstraints viewportConstraints) {
+              return SingleChildScrollView(
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(
+                    minHeight: viewportConstraints.maxHeight,
+                    minWidth: viewportConstraints.maxWidth,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 16.0),
+                        child: CustomTextField(
+                            labelText: "Employee Id",
+                            controller: _empIdController,
+                            intialVal: _empId,
+                            hintText: "Please enter your employee id",
+                            icons: Icon(Icons.adjust),
+                            onSaved: (String value) {
+                              //  _formKey.currentState.save();
+                              model.id = value;
+                              this.model.id = value;
+                            },
+                            onChanged: (String value) {
+                              _formKey.currentState.save();
+                              model.id = value;
+                            },
+                            validator: true),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 16.0),
+                        child: CustomTextField(
+                          labelText: "Employee Name",
+                          //   intialVal: _empNameController.text,
+                          controller: _empNameController,
+                          hintText: "Please enter your Name",
+                          icons: Icon(Icons.people_outline),
+                          validator: true,
+                          onChanged: (String value) {
+                            _formKey.currentState.save();
+                            this.model.employeeName = value;
+                          },
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 16.0),
+                        child: CustomTextField(
+                          labelText: "Salary",
+                          hintText: "Please enter your Salary",
+                          icons: Icon(Icons.apps),
+                          validator: true,
+                          onChanged: (String value) {
+                            this.model.employeeSalary = value;
+                          },
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 16.0),
+                        child: RaisedButton(
+                          onPressed: () {
+                            if (_formKey.currentState.validate()) {
+                              print('value');
+                              setState(() {
+                                _empIdController.text = this.model.id;
+                                _empNameController.text =
+                                    this.model.employeeName;
+                                this._formKey.currentState.save();
+                              });
+                              print(this.model.id);
+                              print(model.id);
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => UserFormResult(
+                                        employeeModel: this.model)),
+                              );
+                            }
+                          },
+                          child: Text('Submit'),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            })));
   }
 }

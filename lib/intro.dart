@@ -1,12 +1,14 @@
 import 'package:NewFlutterApp/contact/contactlistpage.dart';
 import 'package:NewFlutterApp/fileanimation.dart';
+import 'package:NewFlutterApp/formchallenge.dart';
 import 'package:NewFlutterApp/futurebuilderdynamic.dart';
+import 'package:NewFlutterApp/practicelayout.dart';
 import 'package:NewFlutterApp/silverapp.dart';
+import 'package:NewFlutterApp/statepage.dart';
+import 'package:NewFlutterApp/staticjson.dart';
 import 'package:NewFlutterApp/testcalendar.dart';
 import 'package:NewFlutterApp/userform.dart';
 import 'package:flutter/material.dart';
-import 'package:NewFlutterApp/statepage.dart';
-import 'package:NewFlutterApp/staticjson.dart';
 
 class IntroPage extends StatefulWidget {
   final String title;
@@ -34,42 +36,82 @@ class _IntroPageState extends State<IntroPage> {
               RaisedButton(
                 color: Colors.brown[100].withOpacity(0.1),
                 onPressed: _fireStateFunction,
-                child: (Text('State Example',style: TextStyle(color: Colors.white, fontSize: 16),)),
+                child: (Text(
+                  'State',
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                )),
+              ),
+              RaisedButton(
+                color: Colors.brown[100].withOpacity(0.1),
+                onPressed: _createCustomLayout,
+                child: (Text(
+                  'Flutter Layout Challenge',
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                )),
+              ),
+              RaisedButton(
+                color: Colors.brown[100].withOpacity(0.1),
+                onPressed: _formChallengeAction,
+                child: (Text(
+                  'Developer Profile Challenge',
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                )),
               ),
               RaisedButton(
                 onPressed: _staticJsonAction,
                 color: Colors.brown[100].withOpacity(0.1),
-                child: (Text('Static Json Example',style: TextStyle(color: Colors.white, fontSize: 16),)),
+                child: (Text(
+                  'Static Json',
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                )),
               ),
               RaisedButton(
                 onPressed: _dynamicDataction,
-                color: Colors.brown[100].withOpacity(0.1),
-                child: (Text('Dynamic Data With FlutterBuilder',style: TextStyle(color: Colors.white, fontSize: 16),)),
+                    color: Colors.brown[100].withOpacity(0.1),
+                    child: (Text(
+                      ' FlutterBuilder',
+                      style: TextStyle(color: Colors.white, fontSize: 16),
+                    )),
               ),
               RaisedButton(
                 onPressed: _testCalendarAction,
                 color: Colors.brown[100].withOpacity(0.1),
-                child: (Text('Test Calendar',style: TextStyle(color: Colors.white, fontSize: 16),)),
+                child: (Text(
+                  'Test Calendar',
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                )),
               ),
               RaisedButton(
                 onPressed: _flipAnimationAction,
                 color: Colors.brown[100].withOpacity(0.1),
-                child: (Text('Flip Animation',style: TextStyle(color: Colors.white, fontSize: 16),)),
+                child: (Text(
+                  'Flip Animation',
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                )),
               ),
               RaisedButton(
                 onPressed: _silverAppAction,
                 color: Colors.brown[100].withOpacity(0.1),
-                child: (Text('Silver App Bar',style: TextStyle(color: Colors.white, fontSize: 16),)),
+                child: (Text(
+                  'Silver App Bar',
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                )),
               ),
               RaisedButton(
                 onPressed: _userFormAction,
                 color: Colors.brown[100].withOpacity(0.1),
-                child: (Text('Form Ex',style: TextStyle(color: Colors.white, fontSize: 16),)),
+                child: (Text(
+                  'Form Ex',
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                )),
               ),
               RaisedButton(
                 onPressed: _circularClipAction,
                 color: Colors.brown[100].withOpacity(0.1),
-                child: (Text('Circular clip animation - page navigation',style: TextStyle(color: Colors.white, fontSize: 16),)),
+                child: (Text(
+                  'Circular clip animation - page navigation',
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                )),
               )
             ]))));
   }
@@ -134,6 +176,20 @@ class _IntroPageState extends State<IntroPage> {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => ContactListPage()),
+    );
+  }
+
+  void _createCustomLayout() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => PracticeLayout()),
+    );
+  }
+
+  void _formChallengeAction() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => FormChallenge()),
     );
   }
 }

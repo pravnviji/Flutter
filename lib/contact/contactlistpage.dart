@@ -145,7 +145,7 @@ class _ContactDetailPageState extends State<ContactDetailPage> {
                 children: [
                   Container(
                     height: 140,
-                    color: Colors.blue,
+                    color: Colors.brown.withOpacity(0.5),
                   ),
                   Container(
                     height: 220,
@@ -159,17 +159,21 @@ class _ContactDetailPageState extends State<ContactDetailPage> {
           ),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: Table(
-              columnWidths: const {
-                0: IntrinsicColumnWidth(flex: 1),
-                1: FlexColumnWidth(99),
-              },
-              textBaseline: TextBaseline.alphabetic,
-              defaultVerticalAlignment: TableCellVerticalAlignment.baseline,
-              children: [
-                _buildTableRow(label: 'Email', value: widget.contactInfo.email),
-                _buildTableRow(label: 'Phone', value: widget.contactInfo.phone),
-              ],
+            child: Center(
+              child: Table(
+                columnWidths: const {
+                  0: IntrinsicColumnWidth(flex: 1),
+                  1: FlexColumnWidth(99),
+                },
+                textBaseline: TextBaseline.alphabetic,
+                defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                children: [
+                  _buildTableRow(
+                      label: 'Email', value: widget.contactInfo.email),
+                  _buildTableRow(
+                      label: 'Phone', value: widget.contactInfo.phone),
+                ],
+              ),
             ),
           ),
         ],
