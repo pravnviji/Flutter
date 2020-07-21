@@ -2,9 +2,10 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:NewFlutterApp/HexColor.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import 'model/StudentModel.dart';
 
 class SilverAppExample extends StatefulWidget {
   @override
@@ -12,7 +13,7 @@ class SilverAppExample extends StatefulWidget {
 }
 
 class _SilverAppExampleState extends State<SilverAppExample> {
-  StreamController _postController;
+  StreamController<List<StudentModel>> _postController;
 
   Future _loadStudentAsset() async {
     return await rootBundle.loadString('assets/mock/Student.json');
@@ -21,8 +22,10 @@ class _SilverAppExampleState extends State<SilverAppExample> {
   void _loadStudent() async {
     _loadStudentAsset().then((response) async {
       Iterable list = json.decode(response);
-      _postController.add(list);
-      return list;
+      List<StudentModel> studentList =
+          list.map((model) => StudentModel.fromJson(model)).toList();
+      _postController.add(studentList);
+      return studentList;
     });
   }
 
@@ -33,38 +36,6 @@ class _SilverAppExampleState extends State<SilverAppExample> {
     super.initState();
   }
 
-  /*Future<String> _loadStudentAsset() async {
-  return await rootBundle.loadString('assets/mock/Student.json');
-  }*/
-
-/*
-  Stream<List<StudentModel>> _studentFinalStream = (() async* {
-    rootBundle.loadString('assets/mock/Student.json').then((response) {
-      print(response);
-      Iterable list = json.decode(response);
-      return Stream<List<StudentModel>>.fromIterable(
-        <List<StudentModel>>[
-          list.map((model) => StudentModel.fromJson(model)).toList(),
-        ],
-      );
-    });
-  })();*/
-
-/*
-  final ScrollController _scrollController = new ScrollController();
-  List<StudentModel> student;
-
-  Future<String> _loadStudentAsset() async {
-    return await rootBundle.loadString('assets/mock/Student.json');
-  }
-
-  void _loadStudent() {
-    _loadStudentAsset().then((response) {
-      Iterable list = json.decode(response);
-      student = list.map((model) => StudentModel.fromJson(model)).toList();
-    });
-  }
-*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,8 +72,14 @@ class _SilverAppExampleState extends State<SilverAppExample> {
           },
           body: Container(
             padding: EdgeInsets.fromLTRB(5, 10, 5, 10),
-            height: MediaQuery.of(context).size.height * 0.35,
-            width: MediaQuery.of(context).size.width * 0.45,
+            height: MediaQuery
+                .of(context)
+                .size
+                .height * 0.35,
+            width: MediaQuery
+                .of(context)
+                .size
+                .width * 0.45,
             child: Column(
               children: <Widget>[
                 Container(
@@ -115,28 +92,29 @@ class _SilverAppExampleState extends State<SilverAppExample> {
                           color: HexColor('#3CB371'))),
                 ),
                 Expanded(
-              flex: 2,
-              child: StreamBuilder(
-                  stream: _postController.stream,
-                  // ignore: missing_return
-                  builder: (BuildContext context, AsyncSnapshot snapshot) {
-                    if (snapshot.hasError) {
-                      return Text(snapshot.error);
-                    }
+                  flex: 2,
+                  child: StreamBuilder<List<StudentModel>>(
+                      stream: _postController.stream,
+                      // ignore: missing_return
+                      builder: (BuildContext context,
+                          AsyncSnapshot<List<StudentModel>> snapshot) {
+                        if (snapshot.hasError) {
+                          return Text(snapshot.error);
+                        }
 
-                    if (snapshot.hasData) {
-                      return ListView.builder(
-                          // scrollDirection: Axis.vertical,
-                          //physics: ScrollPhysics(),
-                          //shrinkWrap: true,
-                          itemCount: snapshot.data.length,
-                          itemBuilder: (context, index) {
-                            var student = snapshot.data[index];
-                            return ListTile(
-                              title: Text(student['name']),
-                              subtitle: Text(student['id']),
-                            );
-                          });
+                        if (snapshot.hasData) {
+                          return ListView.builder(
+                              scrollDirection: Axis.vertical,
+                              physics: ScrollPhysics(),
+                              shrinkWrap: true,
+                              itemCount: snapshot.data.length,
+                              itemBuilder: (context, index) {
+                                var student = snapshot.data[index];
+                                return ListTile(
+                                  title: Text(student.studentName),
+                                  subtitle: Text(student.studentId),
+                                );
+                              });
                     }
                     if (snapshot.connectionState != ConnectionState.done) {
                       return Center(
@@ -144,12 +122,12 @@ class _SilverAppExampleState extends State<SilverAppExample> {
                       );
                     }
 
-                    if (!snapshot.hasData &&
-                        snapshot.connectionState == ConnectionState.done) {
-                      return Text('No Posts');
-                    }
-                  }),
-            ),
+                        if (!snapshot.hasData &&
+                            snapshot.connectionState == ConnectionState.done) {
+                          return Text('No Posts');
+                        }
+                      }),
+                ),
               ],
             ),
           ),
