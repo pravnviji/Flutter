@@ -1,6 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:NewFlutterApp/intro.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+
+import './provider_example/services/service_locator.dart';
 
 void main() {
   FlutterError.onError = (FlutterErrorDetails details) {
@@ -8,6 +10,7 @@ void main() {
   };
 
   //debugPaintSizeEnabled=true;
+  setupServiceLocator();
   runApp(MyApp());
 }
 

@@ -29,7 +29,6 @@ class _UserForm extends State<UserForm> {
     } else {
       _empId = _empIdController.text;
     }
-    print('_empIdListen   ' + _empId);
   }
 
   @override
@@ -126,15 +125,12 @@ class _UserForm extends State<UserForm> {
                         child: RaisedButton(
                           onPressed: () {
                             if (_formKey.currentState.validate()) {
-                              print('value');
                               setState(() {
                                 _empIdController.text = this.model.id;
                                 _empNameController.text =
                                     this.model.employeeName;
                                 this._formKey.currentState.save();
                               });
-                              print(this.model.id);
-                              print(model.id);
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(

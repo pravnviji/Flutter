@@ -1,14 +1,17 @@
-import 'package:NewFlutterApp/contact/contactlistpage.dart';
-import 'package:NewFlutterApp/fileanimation.dart';
-import 'package:NewFlutterApp/formchallenge.dart';
-import 'package:NewFlutterApp/futurebuilderdynamic.dart';
-import 'package:NewFlutterApp/practicelayout.dart';
-import 'package:NewFlutterApp/silverapp.dart';
-import 'package:NewFlutterApp/statepage.dart';
-import 'package:NewFlutterApp/staticjson.dart';
-import 'package:NewFlutterApp/testcalendar.dart';
-import 'package:NewFlutterApp/userform.dart';
 import 'package:flutter/material.dart';
+
+import 'contact/contactlistpage.dart';
+import 'fileanimation.dart';
+import 'formchallenge.dart';
+import 'futurebuilderdynamic.dart';
+import 'hookstatefulwidget.dart';
+import 'practicelayout.dart';
+import 'provider_example/ui/views/calculate_screen.dart';
+import 'silverapp.dart';
+import 'statepage.dart';
+import 'staticjson.dart';
+import 'testcalendar.dart';
+import 'userform.dart';
 
 class IntroPage extends StatefulWidget {
   final String title;
@@ -67,11 +70,11 @@ class _IntroPageState extends State<IntroPage> {
               ),
               RaisedButton(
                 onPressed: _dynamicDataction,
-                    color: Colors.brown[100].withOpacity(0.1),
-                    child: (Text(
-                      ' FlutterBuilder',
-                      style: TextStyle(color: Colors.white, fontSize: 16),
-                    )),
+                color: Colors.brown[100].withOpacity(0.1),
+                child: (Text(
+                  ' FlutterBuilder',
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                )),
               ),
               RaisedButton(
                 onPressed: _testCalendarAction,
@@ -112,12 +115,28 @@ class _IntroPageState extends State<IntroPage> {
                   'Circular clip animation - page navigation',
                   style: TextStyle(color: Colors.white, fontSize: 16),
                 )),
+              ),
+              RaisedButton(
+                onPressed: _hookPageAction,
+                color: Colors.brown[100].withOpacity(0.1),
+                child: (Text(
+                  'Hook Example',
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                )),
+              ),
+              RaisedButton(
+                onPressed: _calculateCurrencyAction,
+                color: Colors.brown[100].withOpacity(0.1),
+                child: (Text(
+                  'Providers Example',
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                )),
               )
             ]))));
   }
 
   void _fireStateFunction() {
-    print('State Example pressed');
+    debugPrint('State Example pressed');
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -126,7 +145,7 @@ class _IntroPageState extends State<IntroPage> {
   }
 
   void _staticJsonAction() {
-    print('Static Json Button pressed');
+    debugPrint('Static Json Button pressed');
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -190,6 +209,22 @@ class _IntroPageState extends State<IntroPage> {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => FormChallenge()),
+    );
+  }
+
+  void _hookPageAction() {
+    debugPrint('Hook button trigger');
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => HookStateWidget()),
+    );
+  }
+
+  void _calculateCurrencyAction() {
+    debugPrint('CalculateCurrencyScreen  trigger');
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => CalculateCurrencyScreen()),
     );
   }
 }
