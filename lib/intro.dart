@@ -1,10 +1,14 @@
+import 'package:NewFlutterApp/bloc/bloc.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'fancy_bottom_bar.dart';
+import 'location_screen.dart';
 import 'contact/contactlistpage.dart';
 import 'fileanimation.dart';
 import 'formchallenge.dart';
 import 'futurebuilderdynamic.dart';
 import 'hookstatefulwidget.dart';
+import 'model/weather/weather.dart';
 import 'practicelayout.dart';
 import 'provider_example/ui/views/calculate_screen.dart';
 import 'silverapp.dart';
@@ -12,6 +16,7 @@ import 'statepage.dart';
 import 'staticjson.dart';
 import 'testcalendar.dart';
 import 'userform.dart';
+import 'weatherpage.dart';
 
 class IntroPage extends StatefulWidget {
   final String title;
@@ -34,105 +39,132 @@ class _IntroPageState extends State<IntroPage> {
                 fit: BoxFit.cover,
               ),
             ),
-            child: Center(
-                child: Column(children: <Widget>[
-              RaisedButton(
-                color: Colors.brown[100].withOpacity(0.1),
-                onPressed: _fireStateFunction,
-                child: (Text(
-                  'State',
-                  style: TextStyle(color: Colors.white, fontSize: 16),
-                )),
-              ),
-              RaisedButton(
-                color: Colors.brown[100].withOpacity(0.1),
-                onPressed: _createCustomLayout,
-                child: (Text(
-                  'Flutter Layout Challenge',
-                  style: TextStyle(color: Colors.white, fontSize: 16),
-                )),
-              ),
-              RaisedButton(
-                color: Colors.brown[100].withOpacity(0.1),
-                onPressed: _formChallengeAction,
-                child: (Text(
-                  'Developer Profile Challenge',
-                  style: TextStyle(color: Colors.white, fontSize: 16),
-                )),
-              ),
-              RaisedButton(
-                onPressed: _staticJsonAction,
-                color: Colors.brown[100].withOpacity(0.1),
-                child: (Text(
-                  'Static Json',
-                  style: TextStyle(color: Colors.white, fontSize: 16),
-                )),
-              ),
-              RaisedButton(
-                onPressed: _dynamicDataction,
-                color: Colors.brown[100].withOpacity(0.1),
-                child: (Text(
-                  ' FlutterBuilder',
-                  style: TextStyle(color: Colors.white, fontSize: 16),
-                )),
-              ),
-              RaisedButton(
-                onPressed: _testCalendarAction,
-                color: Colors.brown[100].withOpacity(0.1),
-                child: (Text(
-                  'Test Calendar',
-                  style: TextStyle(color: Colors.white, fontSize: 16),
-                )),
-              ),
-              RaisedButton(
-                onPressed: _flipAnimationAction,
-                color: Colors.brown[100].withOpacity(0.1),
-                child: (Text(
-                  'Flip Animation',
-                  style: TextStyle(color: Colors.white, fontSize: 16),
-                )),
-              ),
-              RaisedButton(
-                onPressed: _silverAppAction,
-                color: Colors.brown[100].withOpacity(0.1),
-                child: (Text(
-                  'Silver App Bar',
-                  style: TextStyle(color: Colors.white, fontSize: 16),
-                )),
-              ),
-              RaisedButton(
-                onPressed: _userFormAction,
-                color: Colors.brown[100].withOpacity(0.1),
-                child: (Text(
-                  'Form Ex',
-                  style: TextStyle(color: Colors.white, fontSize: 16),
-                )),
-              ),
-              RaisedButton(
-                onPressed: _circularClipAction,
-                color: Colors.brown[100].withOpacity(0.1),
-                child: (Text(
-                  'Circular clip animation - page navigation',
-                  style: TextStyle(color: Colors.white, fontSize: 16),
-                )),
-              ),
-              RaisedButton(
-                onPressed: _hookPageAction,
-                color: Colors.brown[100].withOpacity(0.1),
-                child: (Text(
-                  'Hook Example',
-                  style: TextStyle(color: Colors.white, fontSize: 16),
-                )),
-              ),
-              RaisedButton(
-                onPressed: _calculateCurrencyAction,
-                color: Colors.brown[100].withOpacity(0.1),
-                child: (Text(
-                  'Providers Example',
-                  style: TextStyle(color: Colors.white, fontSize: 16),
-                )),
-              )
-            ]))));
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 15.0, horizontal: 45.0),
+              child: ListView(children: <Widget>[
+                RaisedButton(
+                  color: Colors.brown[100].withOpacity(0.1),
+                  onPressed: _fireStateFunction,
+                  child: (Text(
+                    'State',
+                    style: TextStyle(color: Colors.white, fontSize: 16),
+                  )),
+                ),
+                RaisedButton(
+                  color: Colors.brown[100].withOpacity(0.1),
+                  onPressed: _createCustomLayout,
+                  child: (Text(
+                    'Flutter Layout Challenge',
+                    style: TextStyle(color: Colors.white, fontSize: 16),
+                  )),
+                ),
+                RaisedButton(
+                  color: Colors.brown[100].withOpacity(0.1),
+                  onPressed: _formChallengeAction,
+                  child: (Text(
+                    'Developer Profile Challenge',
+                    style: TextStyle(color: Colors.white, fontSize: 16),
+                  )),
+                ),
+                RaisedButton(
+                  onPressed: _staticJsonAction,
+                  color: Colors.brown[100].withOpacity(0.1),
+                  child: (Text(
+                    'Static Json',
+                    style: TextStyle(color: Colors.white, fontSize: 16),
+                  )),
+                ),
+                RaisedButton(
+                  onPressed: _dynamicDataction,
+                  color: Colors.brown[100].withOpacity(0.1),
+                  child: (Text(
+                    ' FlutterBuilder',
+                    style: TextStyle(color: Colors.white, fontSize: 16),
+                  )),
+                ),
+                RaisedButton(
+                  onPressed: _testCalendarAction,
+                  color: Colors.brown[100].withOpacity(0.1),
+                  child: (Text(
+                    'Test Calendar',
+                    style: TextStyle(color: Colors.white, fontSize: 16),
+                  )),
+                ),
+                RaisedButton(
+                  onPressed: _flipAnimationAction,
+                  color: Colors.brown[100].withOpacity(0.1),
+                  child: (Text(
+                    'Flip Animation',
+                    style: TextStyle(color: Colors.white, fontSize: 16),
+                  )),
+                ),
+                RaisedButton(
+                  onPressed: _silverAppAction,
+                  color: Colors.brown[100].withOpacity(0.1),
+                  child: (Text(
+                    'Silver App Bar',
+                    style: TextStyle(color: Colors.white, fontSize: 16),
+                  )),
+                ),
+                RaisedButton(
+                  onPressed: _userFormAction,
+                  color: Colors.brown[100].withOpacity(0.1),
+                  child: (Text(
+                    'Form Ex',
+                    style: TextStyle(color: Colors.white, fontSize: 16),
+                  )),
+                ),
+                RaisedButton(
+                  onPressed: _circularClipAction,
+                  color: Colors.brown[100].withOpacity(0.1),
+                  child: (Text(
+                    'Circular clip animation - page navigation',
+                    style: TextStyle(color: Colors.white, fontSize: 16),
+                  )),
+                ),
+                RaisedButton(
+                  onPressed: _hookPageAction,
+                  color: Colors.brown[100].withOpacity(0.1),
+                  child: (Text(
+                    'Hook Example',
+                    style: TextStyle(color: Colors.white, fontSize: 16),
+                  )),
+                ),
+                RaisedButton(
+                  onPressed: _calculateCurrencyAction,
+                  color: Colors.brown[100].withOpacity(0.1),
+                  child: (Text(
+                    'Providers Example',
+                    style: TextStyle(color: Colors.white, fontSize: 16),
+                  )),
+                ),
+                RaisedButton(
+                  onPressed: _blocLocationAction,
+                  color: Colors.brown[100].withOpacity(0.1),
+                  child: (Text(
+                    'Zomato test',
+                    style: TextStyle(color: Colors.white, fontSize: 16),
+                  )),
+                ),
+                RaisedButton(
+                  onPressed: _fancyBottomBar,
+                  color: Colors.brown[100].withOpacity(0.1),
+                  child: (Text(
+                    'Fancy Bottom Bar',
+                    style: TextStyle(color: Colors.white, fontSize: 16),
+                  )),
+                ),
+                RaisedButton(
+                  onPressed: _blockWeatherAction,
+                  color: Colors.brown[100].withOpacity(0.1),
+                  child: (Text(
+                    'Weather block example',
+                    style: TextStyle(color: Colors.white, fontSize: 16),
+                  )),
+                )
+              ]),
+            )));
   }
 
   void _fireStateFunction() {
@@ -225,6 +257,33 @@ class _IntroPageState extends State<IntroPage> {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => CalculateCurrencyScreen()),
+    );
+  }
+
+  void _blocLocationAction() {
+    debugPrint('CalculateCurrencyScreen  trigger');
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => BlocLocationScreen()),
+    );
+  }
+
+  void _fancyBottomBar() {
+    debugPrint('FancyBottom  bar');
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => FancyBottomPage()),
+    );
+  }
+
+  void _blockWeatherAction() {
+    debugPrint('CalculateCurrencyScreen  trigger');
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => BlocProvider(
+              create: (context) => WeatherBloc(Weather()),
+              child: WeatherPage())),
     );
   }
 }

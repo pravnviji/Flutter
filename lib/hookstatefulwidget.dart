@@ -8,6 +8,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'HexColor.dart';
 import 'model/StudentModel.dart';
 
+@immutable
 class HookStateWidget extends HookWidget {
   StreamController<List<StudentModel>> _postController;
 
