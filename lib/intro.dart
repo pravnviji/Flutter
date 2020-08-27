@@ -119,7 +119,7 @@ class _IntroPageState extends State<IntroPage> {
                   onPressed: _circularClipAction,
                   color: Colors.brown[100].withOpacity(0.1),
                   child: (Text(
-                    'Circular clip animation - page navigation',
+                    'Circular clip animation - pagenavigation',
                     style: TextStyle(color: Colors.white, fontSize: 16),
                   )),
                 ),
